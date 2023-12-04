@@ -12,6 +12,7 @@ class BaileysBottle {
         storeName: string,
         options?: StoreHandleOptions
     ) => {
+        if (!ds) throw new Error('ds undefined')
         var store = await ds.getRepository(Auth).findOne({
             where: { key: storeName },
         })
