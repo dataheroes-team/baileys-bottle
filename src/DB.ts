@@ -45,16 +45,16 @@ class DB {
 
         try {
             if (options && options.key) {
-                await this.dataSource
+                this.dataSource
                     .getRepository(Auth)
                     .find({ where: { key: options.key } })
-                return
+                return this.dataSource
             }
-            await this.dataSource.getRepository(Auth).find()
+            this.dataSource.getRepository(Auth).find()
+            return this.dataSource
         } catch {
             return this.get(db, { ...options, sync: true })
         }
-        return this.dataSource
     }
 }
 
